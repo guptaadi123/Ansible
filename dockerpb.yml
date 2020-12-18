@@ -1,0 +1,30 @@
+- hosts: all
+  tasks:
+  - command: "yum install docker-ce --nobest -y"
+  - yum:
+     name: "python3"
+  - pip:
+     name:
+       - "requestes"
+       - "docker-py"
+  - service:
+     name: "docker"
+     state: started
+  - file:
+     path: /code
+     state: directory
+  - template:
+     src: /mycode/new.html
+     dest: /code
+  - community.general.docker_container:
+          name: "py123"
+          image: "httpd:2.4"
+          ports:
+           - "8090:80"
+          volumes:
+           - /code:/usr/local/apache2/htdocs/
+          
+         
+               
+          
+              

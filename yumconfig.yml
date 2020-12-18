@@ -1,0 +1,22 @@
+- hosts: all
+  tasks:
+  - ansible.posix.mount:
+      path: "/dvd"
+      src:  "/dev/cdrom"
+      fstype: "iso9660"
+      state: mounted
+  -  yum_repository:
+      name: "dvd1"
+      baseurl: "/dvd/AppStream"
+      description: "new"
+      gpgcheck: no
+  -  yum_repository:
+      name: "dvd2"
+      baseurl: "/dvd/BaseOS"
+      description: "new base os"
+      gpgcheck: no
+  -  yum_repository:
+      name: "Docker"
+      baseurl: "https://download.docker.com/linux/centos/7/x86_64/stable/"
+      description: "Docker repo"
+      gpgcheck: no  
