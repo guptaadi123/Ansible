@@ -1,0 +1,11 @@
+- hosts: controller
+  tasks:
+   - yum:
+       name: "haproxy"
+          
+   - template:
+       src: path to haproxy.cfg
+       dest: /etc/haproxy/haproxy.cfg       
+   - service:
+       name: "haproxy"
+       state: restarted
