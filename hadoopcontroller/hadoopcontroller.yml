@@ -1,0 +1,22 @@
+- hosts: data
+  tasks:
+  - copy:
+     src: hadoop-1.2.1-1.x86_64.rpm
+     dest: /
+  - copy:
+     src: jdk-8u171-linux-x64.rpm
+     dest: /
+  - command: "rpm -i /hadoop-1.2.1-1.x86_64.rpm --force" 
+  - yum:
+     name: /jdk-8u171-linux-x64.rpm
+     disable_gpg_check: True
+  - file:
+     path: /dn1
+     state: directory
+  - template:
+     src: /hadoopcontroller/hdfs-site.xml
+     dest: /etc/hadoop/hdfs-site.xml
+  - template:
+     src: /hadoopcontroller/core-site.xml
+     dest: /etc/hadoop/core-site.xml
+  - command: "hadoop-daemon.sh start datanode"
