@@ -8,3 +8,5 @@ Under template module  in the src give hadoop.cfg file destination.
 # Hadoop configuration
 For setting namenode use file inside hadoopnamenode folder<br/>
 For setting datanode use file inside hadoopcontroller folder
+# Osspecific palybook
+In folder save variable file name according to os name  and version which is given by ansible_facts.
