@@ -1,0 +1,16 @@
+- hosts: diff
+  vars_files:
+          - "{{ansible_facts['distribution']}}-{{ansible_facts['distribution_major_version']}}.yml"      
+  tasks:
+   - debug:
+       msg: "{{a}}"
+   - package:
+       name: "{{package}}"
+       state: present
+   - template:
+       dest:  "{{dest}}"
+       src: a.html
+   - service:
+       name: "{{service}}"
+       state: started
+  
